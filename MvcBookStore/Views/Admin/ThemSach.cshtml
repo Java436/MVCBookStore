@@ -1,0 +1,93 @@
+﻿@model MvcBookStore.Models.SACH
+
+@{
+    ViewBag.Title = "ThemSach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center">THÊM SÁCH</h2>
+
+@using (Html.BeginForm((Html.BeginForm("ThemSach", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+
+        <div style="margin-left:50px;">
+            <div class="form-group">
+                <h6>Tên sách :</h6>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Tensach, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tensach, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:20px;">
+                <h6>Đơn vị tính :</h6>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Donvitinh, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Donvitinh, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:20px;">
+                <h6>Đơn giá :</h6>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Dongia, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Dongia, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:20px;">
+                <h6>Mô tả :</h6>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:20px;">
+                <h6>Ảnh bìa :</h6>
+                <div class="col-md-10">
+                    <input type="file" name="Hinhminhhoa" />
+                    @Html.ValidationMessageFor(model => model.Hinhminhhoa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:20px;">
+                <h6>Chủ đề :</h6>
+                <div class="col-md-10">
+                    @Html.DropDownList("MaCD", null, htmlAttributes: new { @class = "control-control" })
+                    @Html.ValidationMessageFor(model => model.MaCD, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:20px;">
+                <h6>Nhà xuất bản :</h6>
+                <div class="col-md-10">
+                    @Html.DropDownList("MaNXB", null, htmlAttributes: new { @class = "control-control" })
+                    @Html.ValidationMessageFor(model => model.MaNXB, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:20px;">
+                <h6>Ngày cập nhật :</h6>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Ngaycapnhat, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                    @Html.ValidationMessageFor(model => model.Ngaycapnhat, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top:20px; text-align:center">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Thêm sách" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div style="margin-left:50px;margin-bottom:40px;">
+    @Html.ActionLink("Quay lại", "Sach", "Admin")
+</div>

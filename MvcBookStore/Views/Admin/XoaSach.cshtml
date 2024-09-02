@@ -1,0 +1,89 @@
+﻿@model MvcBookStore.Models.SACH
+
+@{
+    ViewBag.Title = "XoaSach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h3>Bạn có chắc muốn xoá sách này khỏi danh sách ?</h3>
+<div>
+    <hr />
+    <div style="margin-left:50px;">
+        <div class="row">
+            <div class="col-md-3 row-title">
+                TÊN SÁCH:
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.Tensach)
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-3 row-title">
+                ĐƠN VỊ TÍNH:
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.Donvitinh)
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-3 row-title">
+                ĐƠN GIÁ:
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.Dongia)
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-3 row-title">
+                MÔ TẢ:
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.Mota)
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-3 row-title">
+                ẢNH BÌA:
+            </div>
+            <div class="col-md-9">
+                <img src="~/Images/@Model.Hinhminhhoa" style="width: 120px;" />
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-3 row-title">
+                CHỦ ĐỀ:
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.CHUDE.TenChuDe)
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-3 row-title">
+                NHÀ XUẤT BẢN:
+            </div>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.NHAXUATBAN.TenNXB)
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-3 row-title">
+                NGÀY CẬP NHẬT:
+            </div>
+            <div class="col-md-9">
+                @String.Format("{0:dd/MM/yyyy}", Model.Ngaycapnhat)
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="text-align:center">
+            <input type="submit" value="Xoá sách" class="btn btn-primary" />
+        </div>
+    }
+
+    <div style="margin-left:50px;margin-bottom:40px;">
+        @Html.ActionLink("Quay lại", "Sach", "Admin")
+    </div>
+</div>

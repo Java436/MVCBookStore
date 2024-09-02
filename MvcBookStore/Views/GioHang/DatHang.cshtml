@@ -1,0 +1,69 @@
+﻿@using MvcBookStore.Models
+@model List<MatHangMua>
+
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    KHACHHANG khach = Session["TaiKhoan"] as KHACHHANG;
+}
+
+<h2 style="text-align:center">THÔNG TIN GIỎ HÀNG</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Mã sách</th>
+            <th>Tên sách</th>
+            <th>Ảnh bìa</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Thành tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var sach in Model)
+        {
+            <tr>
+                <td>@sach.MaSach</td>
+                <td>@sach.TenSach</td>
+                <td><img src="~/Images/@sach.AnhBia" style="width:100%" /></td>
+                <td>@sach.SoLuong</td>
+                <td>@String.Format("{0:0,0}", sach.DonGia)</td>
+                <td>@String.Format("{0:0,0}", sach.ThanhTien())</td>
+            </tr>
+        }
+
+        <tr>
+            <td colspan="4" style="font-weight: bold; text-align: right; color: red;">Tổng số lượng: @ViewBag.TongSL</td>
+            <td colspan="5" style="font-weight: bold; text-align: right; color: red;">Tổng tiền: @ViewBag.TongTien</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<h2 style="text-align:center">THÔNG TIN KHÁCH HÀNG</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <td>Họ tên: </td>
+        <td>@khach.HoTenKH</td>
+    </tr>
+    <tr>
+        <td>Địa chỉ: </td>
+        <td>@khach.DiachiKH</td>
+    </tr>
+    <tr>
+        <td>Điện thoại: </td>
+        <td>@khach.DienthoaiKH</td>
+    </tr>
+    <tr>
+        <td>Ngày đặt: </td>
+        <td>@DateTime.Now.ToShortDateString()</td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center;">
+            @Html.ActionLink("ĐỒNG Ý ĐẶT HÀNG", "DongYDatHang", null, new { @class = "btn btn-primary" })
+        </td>
+    </tr>
+</table>

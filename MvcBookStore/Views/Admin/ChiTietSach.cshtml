@@ -1,0 +1,94 @@
+﻿@model MvcBookStore.Models.SACH
+
+@{
+    ViewBag.Title = "ChiTietSach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center">THÔNG TIN CHI TIẾT SÁCH</h2>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-3 row-title">
+            TÊN SÁCH:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Tensach)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 row-title">
+            ĐƠN VỊ TÍNH:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Donvitinh)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 row-title">
+            ĐƠN GIÁ:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Dongia)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 row-title">
+            MÔ TẢ:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Mota)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 row-title">
+            ẢNH BÌA:
+        </div>
+        <div class="col-md-9">
+            <img src="~/Images/@Model.Hinhminhhoa" style="width: 120px;" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 row-title">
+            CHỦ ĐỀ:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.CHUDE.TenChuDe)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 row-title">
+            NHÀ XUẤT BẢN:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.NHAXUATBAN.TenNXB)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 row-title">
+            NGÀY CẬP NHẬT:
+        </div>
+        <div class="col-md-9">
+            @String.Format("{0:dd/MM/yyyy}", Model.Ngaycapnhat)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 row-title">
+            SỐ LƯỢNG BÁN:
+        </div>
+        <div class="col-md-9">
+            @Html.DisplayFor(model => model.Soluongban)
+        </div>
+    </div>
+</div>
+<p style="margin-left:170px;margin-top:30px;">
+    @Html.ActionLink("ĐIỀU CHỈNH", "SuaSach", new { id = Model.Masach }) |
+    @Html.ActionLink("TRỞ VỀ", "Sach")
+</p>
+<style>
+    .row-title {
+        font-weight: bold;
+        text-align: right;
+    }
+</style>

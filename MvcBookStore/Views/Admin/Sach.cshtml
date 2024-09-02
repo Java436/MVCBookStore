@@ -1,0 +1,94 @@
+﻿@using MvcBookStore.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<SACH>
+
+@{
+    ViewBag.Title = "Sach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center">QUẢN LÝ THÔNG TIN SÁCH</h2>
+
+<p>
+    @Html.ActionLink("THÊM MỚI", "ThemSach")
+</p>
+<table class="table" border="2">
+    <tr>
+        <th class="col-lg-1">
+            TÊN SÁCH
+        </th>
+        <th class="col-lg-1">
+            GIÁ BÁN
+        </th>
+        <th class="col-lg-4">
+            MÔ TẢ
+        </th>
+        <th class="col-lg-1">
+            ẢNH BÌA
+        </th>
+        <th class="col-lg-1">
+            CHỦ ĐỀ
+        </th>
+        <th class="col-lg-1">
+            NHÀ XUẤT BẢN
+        </th>
+        <th class="col-lg-1">
+            NGÀY CẬP NHẬT
+        </th>
+        <th class="col-lg-1">
+            SỐ LƯỢNG BÁN
+        </th>
+        <th class="col-lg-1" style="width: 150px;"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tensach)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dongia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mota)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Hinhminhhoa)*@
+                <img src="~/Images/@item.Hinhminhhoa" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CHUDE.TenChuDe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NHAXUATBAN.TenNXB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ngaycapnhat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soluongban)
+            </td>
+            <td style="width: 150px;">
+                @Html.ActionLink("SỬA", "SuaSach", new { id = item.Masach }) <br />
+                @Html.ActionLink("CHI TIẾT", "ChiTietSach", new { id = item.Masach }) <br />
+                @Html.ActionLink("XÓA", "XoaSach", new { id = item.Masach })
+            </td>
+        </tr>
+    }
+</table>
+
+<!-- Thêm mã phân trang -->
+<br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Sach", new { page }))
+</div>
+
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>
+<!-- Kết thúc -->
